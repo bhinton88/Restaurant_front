@@ -1,6 +1,7 @@
-import RestaurantCard from "./RestaurantCard"
+import RestaurantForm from "./RestaurantForm"
+import RestaurantList from "./RestaurantList"
 
-function RestaurantPage() {
+function RestaurantPage({ restaurants }) {
 
 }
 
