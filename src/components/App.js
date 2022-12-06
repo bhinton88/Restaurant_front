@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Route,Switch } from "react-router-dom"
+import "bootswatch/dist/simplex/bootstrap.min.css";
+import { Route,Switch } from "react-router-dom";
 import DishesPage from "./DishesPage";
 import NavBar from "./NavBar";
 import RestaurantPage from "./RestaurantPage";
@@ -26,13 +27,13 @@ function App() {
     <div>
       <NavBar/>
       <Switch>
-        <Route>
+        <Route path="/restaurants">
         <RestaurantPage restaurants={restaurants} />
         </Route>
       </Switch>
       <Switch>
         <Route>
-        <DishesPage />
+        <DishesPage path="/dishes"/>
         </Route>
       </Switch>
     </div>
