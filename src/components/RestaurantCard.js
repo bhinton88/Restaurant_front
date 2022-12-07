@@ -9,7 +9,7 @@ import {
   MDBCol,
   MDBCardLink
 } from 'mdb-react-ui-kit';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import Emoji from 'a11y-react-emoji'
 
 function RestaurantCard({restaurant}) {
 
@@ -31,7 +31,7 @@ function RestaurantCard({restaurant}) {
             <br/>
             <em>Contact:</em> {restaurant.phone_number}
             <br/>
-            <em>Online Ordering ?</em>{restaurant.online_ordering}
+            <em>Online Ordering :</em> {restaurant.online_ordering ?  <Emoji symbol='✅' label='check-mark' /> : <Emoji symbol='❌' lable="red-x" />}
           </MDBCardText>
           <MDBCardLink href={restaurant.website}>Website</MDBCardLink>
           <br/>
