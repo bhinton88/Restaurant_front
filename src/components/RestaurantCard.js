@@ -31,7 +31,7 @@ function RestaurantCard({restaurant}) {
             <br/>
             <em>Contact:</em> {restaurant.phone_number}
             <br/>
-            <em>Online Ordering :</em> {restaurant.online_ordering ?  <Emoji symbol='✅' label='check-mark' /> : <Emoji symbol='❌' lable="red-x" />}
+            <em>Online Ordering :</em> {restaurant.online_ordering === "Yes" ?  <Emoji symbol='✅' label='check-mark' /> : <Emoji symbol='❌' lable="red-x" />}
           </MDBCardText>
           <MDBCardLink href={restaurant.website}>Website</MDBCardLink>
           <br/>

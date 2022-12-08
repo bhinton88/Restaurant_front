@@ -23,12 +23,19 @@ function App() {
     .then(data => setDishes(data))
   },[])
 
+  function handleNewRestaurant (data) {
+    setRestaurants([...restaurants, data])
+  }
+
   return(
     <div>
       <NavBar/>
       <Switch>
         <Route path="/restaurants">
-        <RestaurantPage restaurants={restaurants} />
+        <RestaurantPage 
+          restaurants={restaurants} 
+          handleNewRestaurant={handleNewRestaurant}
+        />
         </Route>
       </Switch>
       <Switch>
@@ -41,6 +48,10 @@ function App() {
 }
 
 export default App;
+
+// how to create a drop down with US states
+// what CSS would allow me to adjust images so they are all the same
+// when clicking on button on card, want it to take me to dishes through url /restaurants/restaurantID/dishes
 
 
 

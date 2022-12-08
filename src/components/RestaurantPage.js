@@ -2,11 +2,11 @@ import RestaurantCard from "./RestaurantCard"
 import RestaurantForm from "./RestaurantForm"
 import RestaurantList from "./RestaurantList"
 
-function RestaurantPage({ restaurants }) {
+function RestaurantPage({ restaurants, handleNewRestaurant }) {
 
   return (
     <section>
-      <RestaurantForm />
+      <RestaurantForm handleNewRestaurant={handleNewRestaurant} />
       <RestaurantList restaurants={restaurants} />
     </section>
   )
