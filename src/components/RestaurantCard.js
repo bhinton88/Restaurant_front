@@ -1,30 +1,15 @@
-import {
-  MDBCard,
-  MDBCardBody,
-  MDBCardTitle,
-  MDBCardText,
-  MDBCardImage,
-  MDBBtn,
-  MDBRipple,
-  MDBCol,
-  MDBCardLink
-} from 'mdb-react-ui-kit';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 import Emoji from 'a11y-react-emoji'
 
 function RestaurantCard({restaurant}) {
 
   return (
-    <MDBCol>
-      <MDBCard className='h-100 w-75'>
-        <MDBRipple rippleColor='light' rippleTag='div' className='bg-image hover-overlay'>
-          <MDBCardImage src={restaurant.image} fluid alt='...'  position='top' sizes='small'/>
-          <a>
-            <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}></div>
-          </a>
-        </MDBRipple>
-        <MDBCardBody>
-          <MDBCardTitle><strong>{restaurant.name}</strong></MDBCardTitle>
-          <MDBCardText>
+    <Card style= {{ width: '18rem'}}>
+      <Card.Img variant="top" src={restaurant.image} className="restaurantCardImages" />
+      <Card.Body>
+        <Card.Title>{restaurant.name}</Card.Title>
+        <Card.Text>
             <em>Cuisine type:</em> {restaurant.food_type} 
             <br/>
             <em>Location:</em>  {restaurant.city},{restaurant.state}
@@ -32,15 +17,13 @@ function RestaurantCard({restaurant}) {
             <em>Contact:</em> {restaurant.phone_number}
             <br/>
             <em>Online Ordering :</em> {restaurant.online_ordering === "Yes" ?  <Emoji symbol='✅' label='check-mark' /> : <Emoji symbol='❌' lable="red-x" />}
-          </MDBCardText>
-          <MDBCardLink href={restaurant.website}>Website</MDBCardLink>
-          <br/>
-          <br/>
-          <MDBBtn href='#'>Button</MDBBtn>
-        </MDBCardBody>
-      </MDBCard>
-    </MDBCol>
-  );
+        </Card.Text>
+        <Button variant="primary">Check out our dishes</Button>
+      </Card.Body>
+    </Card>
+  )
 }
 
 export default RestaurantCard
+
+// 

@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import { states } from '../states.js'
 
 
 function RestaurantForm ({ handleNewRestaurant }) {
@@ -27,7 +28,9 @@ function RestaurantForm ({ handleNewRestaurant }) {
     console.log(formData)
   }
 
-  function onSubmit() {
+  function onSubmit(event) {
+    event.preventDefault()
+    
     fetch("http://localhost:9292/restaurants", {
       method: "POST",
       headers: {
@@ -40,7 +43,7 @@ function RestaurantForm ({ handleNewRestaurant }) {
   }
 
   return (
-    <div id="restaurant_form_container">
+    <div id="restaurantFormContainer">
       <Form>
         <Row className="mb-3">
           <Form.Group as={Col} >
@@ -72,6 +75,18 @@ function RestaurantForm ({ handleNewRestaurant }) {
               value={formData.city}
               onChange={onChange}
             />
+          </Form.Group>
+          <Form.Group as={Col}>
+            <Form.Label>State:</Form.Label>
+            <Form.Select 
+              name="state"
+              onChange={onChange}
+              value={formData.state}
+            >
+              {states.map(value => 
+                <option key={value.value} value={value.value}>{value.name}</option>
+                )}
+            </Form.Select>
           </Form.Group>
         </Row>
         <Row className="mb-3">

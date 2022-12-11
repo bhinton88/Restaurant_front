@@ -1,15 +1,18 @@
 import RestaurantCard from "./RestaurantCard"
-import { MDBRow } from 'mdb-react-ui-kit'
+import CardGroup from 'react-bootstrap/CardGroup';
 
 function RestaurantList ({restaurants}) {
 
   return (
     <div>
-      <MDBRow className='row-cols-1 row-cols-md-3 g-4'>
+      <CardGroup>
         {restaurants.map(value => 
-          <RestaurantCard key={value.id} restaurant={value} />
+          <RestaurantCard 
+            key={value.id} 
+            restaurant={value} 
+          />
         )}
-      </MDBRow>
+      </CardGroup>
     </div>
   )
 

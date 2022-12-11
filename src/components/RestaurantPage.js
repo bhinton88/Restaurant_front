@@ -1,4 +1,3 @@
-import RestaurantCard from "./RestaurantCard"
 import RestaurantForm from "./RestaurantForm"
 import RestaurantList from "./RestaurantList"
 

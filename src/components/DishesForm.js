@@ -1,6 +1,20 @@
+import { useState } from "react"
 
+function DishesForm ({ restId }) {
 
-function DishesForm () {
+  const [formData, setFormData] = useState({
+    food_name: "",
+    restaurant_id: `${restId}`,
+    price: 0.00,
+    description: "",
+    image: ""
+  })
+
+  return (
+    <div id="dishesFormContainer">
+
+    </div>
+  )
 
 }
 
