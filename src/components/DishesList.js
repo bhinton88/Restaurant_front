@@ -14,7 +14,10 @@ function DishesList({ restaurants, restId }) {
   return(
     <CardGroup >
       {dishes.map(value => 
-        <DishesCard dish={value} />
+        <DishesCard 
+          key={value.id} 
+          dish={value} 
+        />
         )}
     </CardGroup>
   )

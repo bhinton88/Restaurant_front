@@ -1,4 +1,4 @@
-
+import {NavLink} from "react-router-dom"
 
 function NavBar() {
 
@@ -12,10 +12,10 @@ function NavBar() {
         <div className="collapse navbar-collapse" id="navbarColor01">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
-              <a className="nav-link" href="/Restaurants">Restaurants</a>
+              <NavLink className="nav-link" to="Restaurants">Restaurants</NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/Last_five_dishes">Last Five Dishes</a>
+              <NavLink className="nav-link" to="last_five_dishes_submitted">Last Five Dishes</NavLink>
             </li>
           </ul>
         </div>

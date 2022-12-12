@@ -1,8 +1,15 @@
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Emoji from 'a11y-react-emoji'
+import { useNavigate } from "react-router-dom"
 
 function RestaurantCard({restaurant}) {
+
+  const navigate = useNavigate()
+
+  function onClick () {
+    navigate(`/restaurants/${restaurant.id}/dishes`)
+  }
 
   return (
     <Card style= {{ width: '18rem'}}>
@@ -18,7 +25,7 @@ function RestaurantCard({restaurant}) {
             <br/>
             <em>Online Ordering :</em> {restaurant.online_ordering === "Yes" ?  <Emoji symbol='✅' label='check-mark' /> : <Emoji symbol='❌' lable="red-x" />}
         </Card.Text>
-        <Button variant="primary">Check out our dishes</Button>
+        <Button variant="primary" onClick={onClick}>Check out our dishes</Button>
       </Card.Body>
     </Card>
   )

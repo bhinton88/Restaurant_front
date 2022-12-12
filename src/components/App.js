@@ -4,11 +4,13 @@ import { Route, Routes } from "react-router-dom";
 import DishesPage from "./DishesPage";
 import NavBar from "./NavBar";
 import RestaurantPage from "./RestaurantPage";
+import LastFiveDishesSubmitted from "./LastFiveDishes";
 
 
 function App() {
 
   const [restaurants, setRestaurants] = useState([])
+  const [lastFiveDishes, setLastFiveDishes] = useState([])
 
   useEffect (() => {
     fetch("http://localhost:9292/restaurants")
@@ -16,9 +18,17 @@ function App() {
     .then(data => setRestaurants(data))
   }, [] );
 
+  useEffect (() => {
+    fetch("http://localhost:9292/last_five_foods_submitted")
+    .then(response => response.json())
+    .then(data => setLastFiveDishes(data))
+  }, [])
+
   function handleNewRestaurant (data) {
     setRestaurants([...restaurants, data])
   }
+
+  
 
   return(
     <div>
@@ -33,6 +43,9 @@ function App() {
           <Route path=':restaurantId/dishes' element={
             <DishesPage restaurants={restaurants} /> 
           }/>
+        </Route>
+        <Route>
+          <Route path="/last_five_dishes_submitted" element={<LastFiveDishesSubmitted dishes={lastFiveDishes} />} />
         </Route>
       </Routes>
     </div>

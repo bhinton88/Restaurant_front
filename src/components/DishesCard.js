@@ -6,13 +6,14 @@ function DishesCard({ dish }) {
 
 return (
   <Card style= {{ width: '18rem'}}>
-    <Card.Img variant="top" src={dish.image} />
+    <Card.Img variant="top" src={dish.image} className="dishImages" />
     <Card.Body>
       <Card.Title>{dish.food_name}</Card.Title>
       <Card.Text>
-          <em>Dish Description: </em> {dish.description} 
+          <em>Dish Description: </em> <br/> {dish.description} 
           <br/>
-          <em>Price: </em> {dish.price}
+          <br/>
+          <em>Price: $</em> {dish.price}
       </Card.Text>
     </Card.Body>
   </Card>
