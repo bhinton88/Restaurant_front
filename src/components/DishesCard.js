@@ -8,7 +8,7 @@ return (
   <Card style= {{ width: '18rem'}}>
     <Card.Img variant="top" src={dish.image} className="dishImages" />
     <Card.Body>
-      <Card.Title>{dish.food_name}</Card.Title>
+      <Card.Title>{dish.dish_name}</Card.Title>
       <Card.Text>
           <em>Dish Description: </em> <br/> {dish.description} 
           <br/>

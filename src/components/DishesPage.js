@@ -6,15 +6,22 @@ function DishesPage({ restaurants }) {
 
   const { id } = useParams()
 
-  console.log(id)
+  const allRestaurants = restaurants
+
+  console.log(allRestaurants)
+
+  const restaurant = allRestaurants.filter(restaurant => {
+    return restaurant.id === id
+  })
+
+  console.log(restaurant)
 
   return(
     <section>
       <DishesForm 
-        restId={id}
       />
-      <DishesList 
-        restId={id} 
+      <DishesList
+        id = {id}
         restaurants={restaurants} 
       />
     </section>

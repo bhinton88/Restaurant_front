@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import "bootswatch/dist/simplex/bootstrap.min.css";
 import { Route, Routes } from "react-router-dom";
+import { states } from '../states.js'
 import DishesPage from "./DishesPage";
 import NavBar from "./NavBar";
 import RestaurantPage from "./RestaurantPage";
+import RestaurantForm from "./RestaurantForm";
 import LastFiveDishesSubmitted from "./LastFiveDishes";
-
 
 function App() {
 
@@ -19,7 +20,7 @@ function App() {
   }, [] );
 
   useEffect (() => {
-    fetch("http://localhost:9292/last_five_foods_submitted")
+    fetch("http://localhost:9292/last_five_dishes_submitted")
     .then(response => response.json())
     .then(data => setLastFiveDishes(data))
   }, [])
@@ -28,7 +29,7 @@ function App() {
     setRestaurants([...restaurants, data])
   }
 
-  
+
 
   return(
     <div>
@@ -36,17 +37,22 @@ function App() {
       <Routes>
         <Route path="/restaurants" element={
         <RestaurantPage 
+          states={states}
           restaurants={restaurants} 
-          handleNewRestaurant={handleNewRestaurant}
+          handleNewRestaurant={handleNewRestaurant}/>}
         />
-        }> 
-          <Route path=':restaurantId/dishes' element={
-            <DishesPage restaurants={restaurants} /> 
-          }/>
-        </Route>
-        <Route>
-          <Route path="/last_five_dishes_submitted" element={<LastFiveDishesSubmitted dishes={lastFiveDishes} />} />
-        </Route>
+        <Route path="/restaurants/new_restaurant" element={
+          <RestaurantForm 
+            states={states}
+            handleNewRestaurant={handleNewRestaurant}
+          />} 
+        />
+        <Route path="/restaurants/:id/dishes" element={
+          <DishesPage restaurants={restaurants}/>}
+        />
+        <Route path="/last_five_dishes_submitted" element={
+          <LastFiveDishesSubmitted dishes={lastFiveDishes} />}
+        />
       </Routes>
     </div>
   );
@@ -54,9 +60,10 @@ function App() {
 
 export default App;
 
-// how to create a drop down with US states
-// what CSS would allow me to adjust images so they are all the same
-// when clicking on button on card, want it to take me to dishes through url /restaurants/restaurantID/dishes
+// routes -> why is restaurants array giving me issues?
+// filtering restaurants by state
+// updating a restaurant 
+// redirect back to the restraunts page when new restaurant submitted 
 
 
 

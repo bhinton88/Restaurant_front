@@ -25,7 +25,7 @@ function RestaurantCard({restaurant}) {
             <br/>
             <em>Online Ordering :</em> {restaurant.online_ordering === "Yes" ?  <Emoji symbol='✅' label='check-mark' /> : <Emoji symbol='❌' lable="red-x" />}
         </Card.Text>
-        <Button variant="primary" onClick={onClick}>Check out our dishes</Button>
+        <Button variant="primary" onClick={onClick}>Check out our dishes!</Button>
       </Card.Body>
     </Card>
   )

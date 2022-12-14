@@ -1,24 +1,16 @@
 import DishesCard from "./DishesCard"
 import CardGroup from 'react-bootstrap/CardGroup';
 
-function DishesList({ restaurants, restId }) {
-
-  console.log(restId)
-
-  const restaurant = restaurants.filter(value => value.id === restId)
-
-  const dishes = restaurant.foods
-
-  console.log(dishes)
+function DishesList({ restaurants, id }) {
 
   return(
     <CardGroup >
-      {dishes.map(value => 
+      {/* {dishes.map(value => 
         <DishesCard 
           key={value.id} 
           dish={value} 
         />
-        )}
+        )} */}
     </CardGroup>
   )
 }

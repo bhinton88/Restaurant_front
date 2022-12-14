@@ -6,7 +6,7 @@ function LastFiveCard ({ dish }) {
     <Card style= {{ width: '18rem'}}>
       <Card.Img variant="top" src={dish.image} className="dishImages" />
       <Card.Body>
-        <Card.Title>{dish.food_name}</Card.Title>
+        <Card.Title>{dish.dish_name}</Card.Title>
         <Card.Text>
             <em>Associated Restaurant:</em> {dish.restaurant.name}
             <br/>
