@@ -3,6 +3,20 @@
   width: 120px;
 }
 
+#restpage {
+  margin-block-start: 25px;
+}
+
+#restaurantcard {
+  padding-inline: 8px;
+  margin-inline: 5px;
+  margin-block-start: 25px;
+}
+
+#newrestaurant {
+  margin-block: 30px;
+}
+
 .dishImages {
   height: 300px;
   width: 120px;

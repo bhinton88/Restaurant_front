@@ -6,13 +6,23 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
-function RestaurantPage({ restaurants, handleNewRestaurant, states }) {
+function RestaurantPage({ restaurants, states }) {
 
-  const [toggle, setToggle] = useState(false)
+  const [filterState, setFilterState] = useState("all")
+
   const navigate = useNavigate();
 
   function onChange (event) {
-    console.log(event.target.value)
+    setFilterState(event.target.value)
+  }
+
+  let filteredRestaurants;
+  
+  if(filterState === "all"){
+    filteredRestaurants = restaurants
+  } else {
+    filteredRestaurants = restaurants.filter(value => value.state === filterState)
+
   }
 
   function onClick(){
@@ -20,12 +30,13 @@ function RestaurantPage({ restaurants, handleNewRestaurant, states }) {
   }
 
   return (
-    <section>
+    <section id="restpage">
       <Row>
         <Col sm={3}>
           <Form.Group>
             <Form.Label>Filter by State:</Form.Label>
             <Form.Select onChange={onChange}>
+            <option value="all">All States</option>
             {states.map(value => 
                 <option key={value.value} value={value.value}>{value.name}</option>
             )}
@@ -33,8 +44,8 @@ function RestaurantPage({ restaurants, handleNewRestaurant, states }) {
           </Form.Group>
         </Col>
       </Row>
-      <Button variant="primary" onClick={onClick}>Add a New Restaurant</Button>
-      <RestaurantList restaurants={restaurants} />
+      <Button id="newrestaurant" variant="primary" onClick={onClick}>Add a New Restaurant</Button>
+      <RestaurantList restaurants={filteredRestaurants} />
     </section>
   )
 

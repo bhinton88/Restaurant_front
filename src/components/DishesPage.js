@@ -1,27 +1,28 @@
 import DishesList from "./DishesList"
-import DishesForm from "./DishesForm"
-import { useParams } from "react-router-dom"
+import Button from 'react-bootstrap/Button'
+import { useNavigate, useParams } from "react-router-dom"
 
 function DishesPage({ restaurants }) {
 
+  const navigate = useNavigate()
+
   const { id } = useParams()
 
-  const allRestaurants = restaurants
+  const restaurantDishes = restaurants
+                  .filter(value => value.id === parseInt(id))
+                  .map(value => value.dishes)
 
-  console.log(allRestaurants)
+  const dishes = restaurantDishes[0]
 
-  const restaurant = allRestaurants.filter(restaurant => {
-    return restaurant.id === id
-  })
-
-  console.log(restaurant)
+  function onClick(){
+    navigate(`/restaurants/${id}/dishes/submit_new_dish`)
+  }
 
   return(
     <section>
-      <DishesForm 
-      />
+      <Button variant="primary" onClick={onClick}>Add a New Dish to this Restaurant!</Button>
       <DishesList
-        id = {id}
+        dishes={dishes}
         restaurants={restaurants} 
       />
     </section>

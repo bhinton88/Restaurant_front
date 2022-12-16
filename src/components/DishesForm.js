@@ -1,14 +1,19 @@
 import { useState } from "react"
+import { useParams, useNavigate, Navigate } from "react-router-dom"
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
-function DishesForm ({ restId }) {
+function DishesForm ( ) {
+
+  const { id } = useParams()
+
+  const navigation = useNavigate()
 
   const [formData, setFormData] = useState({
-    food_name: "",
-    restaurant_id: `${restId}`,
+    dish_name: "",
+    restaurant_id: `${parseInt(id)}`,
     price: 0.00,
     description: "",
     image: ""
@@ -20,6 +25,30 @@ function DishesForm ({ restId }) {
       [event.target.name]: event.target.value
     })
     console.log(formData)
+  }
+
+  function onSubmit(event) {
+    fetch("http://localhost:9292/dishes", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+
+    setFormData({
+      dish_name: "",
+      restaurant_id: `${parseInt(id)}`,
+      price: 0.00,
+      description: "",
+      image: ""
+    })
+
+    alert("New Restaurant Submitted")
+
+    navigate("")
   }
 
 
@@ -70,6 +99,8 @@ function DishesForm ({ restId }) {
             />
           </Form.Group>
         </Row>
+        <br/>
+        <Button variant="primary" type="submit">Submit New Dish</Button>
       </Form>
     </div>
   )

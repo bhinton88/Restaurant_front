@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import "bootswatch/dist/simplex/bootstrap.min.css";
 import { Route, Routes } from "react-router-dom";
 import { states } from '../states.js'
-import DishesPage from "./DishesPage";
 import NavBar from "./NavBar";
+import Home from "./Home.js";
+import DishesPage from "./DishesPage";
+import DishesForm from "./DishesForm.js";
 import RestaurantPage from "./RestaurantPage";
 import RestaurantForm from "./RestaurantForm";
 import LastFiveDishesSubmitted from "./LastFiveDishes";
@@ -30,11 +32,11 @@ function App() {
   }
 
 
-
   return(
     <div>
       <NavBar/>
       <Routes>
+        <Route path='/' element={ <Home /> } />
         <Route path="/restaurants" element={
         <RestaurantPage 
           states={states}
@@ -50,6 +52,10 @@ function App() {
         <Route path="/restaurants/:id/dishes" element={
           <DishesPage restaurants={restaurants}/>}
         />
+        <Route path="/restaurants/:id/dishes/submit_new_dish" element={
+          <DishesForm />
+        }
+        />
         <Route path="/last_five_dishes_submitted" element={
           <LastFiveDishesSubmitted dishes={lastFiveDishes} />}
         />
@@ -60,21 +66,16 @@ function App() {
 
 export default App;
 
-// routes -> why is restaurants array giving me issues?
-// filtering restaurants by state
-// updating a restaurant 
-// redirect back to the restraunts page when new restaurant submitted 
-
-
 
 // Hiearchy 
 // -App
 // --NavBar
+// --DishesForm
+// --RestaurantForm
 // --RestaurantPage
-// ---RestaurantForm
 // ---RestaurantList
 // ----RestaurantCard
 // --DishesPage
-// ---DishesForm
 // ---DishesList
 // ----DishesCard
+// --Last Five dishes submitted
