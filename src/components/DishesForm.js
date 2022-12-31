@@ -1,15 +1,15 @@
 import { useState } from "react"
-import { useParams, useNavigate, Navigate } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
-function DishesForm ( ) {
+function DishesForm ({ handleNewDish } ) {
 
   const { id } = useParams()
 
-  const navigation = useNavigate()
+  const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
     dish_name: "",
@@ -24,10 +24,11 @@ function DishesForm ( ) {
       ...formData,
       [event.target.name]: event.target.value
     })
-    console.log(formData)
   }
 
   function onSubmit(event) {
+    event.preventDefault()
+
     fetch("http://localhost:9292/dishes", {
       method: "POST",
       headers: {
@@ -36,7 +37,7 @@ function DishesForm ( ) {
       body: JSON.stringify(formData)
     })
     .then(response => response.json())
-    .then(data => console.log(data))
+    .then(data => handleNewDish(data))
 
     setFormData({
       dish_name: "",
@@ -46,9 +47,9 @@ function DishesForm ( ) {
       image: ""
     })
 
-    alert("New Restaurant Submitted")
+    alert("New Dish Submitted")
 
-    navigate("")
+    navigate(`/restaurants/${id}/dishes`)
   }
 
 
@@ -60,9 +61,9 @@ function DishesForm ( ) {
             <Form.Label>Dish Name:</Form.Label>
             <Form.Control 
               type="text" 
-              name='name'
+              name='dish_name'
               placeholder="Enter Name Here"
-              value={formData.food_name}
+              value={formData.dish_name}
               onChange={onChange}
             />
           </Form.Group>
@@ -100,7 +101,7 @@ function DishesForm ( ) {
           </Form.Group>
         </Row>
         <br/>
-        <Button variant="primary" type="submit">Submit New Dish</Button>
+        <Button onClick={onSubmit} variant="primary" type="submit">Submit New Dish</Button>
       </Form>
     </div>
   )

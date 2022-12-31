@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
-function RestaurantPage({ restaurants, states }) {
+function RestaurantPage({ restaurants, states, handleDeletedRestaurant, updatedRestaurants }) {
 
   const [filterState, setFilterState] = useState("all")
 
@@ -45,7 +45,11 @@ function RestaurantPage({ restaurants, states }) {
         </Col>
       </Row>
       <Button id="newrestaurant" variant="primary" onClick={onClick}>Add a New Restaurant</Button>
-      <RestaurantList restaurants={filteredRestaurants} />
+      <RestaurantList 
+        updatedRestaurants={updatedRestaurants}
+        restaurants={filteredRestaurants} 
+        handleDeletedRestaurant={handleDeletedRestaurant}
+      />
     </section>
   )
 

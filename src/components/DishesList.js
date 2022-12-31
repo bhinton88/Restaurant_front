@@ -1,7 +1,7 @@
 import DishesCard from "./DishesCard"
 import CardGroup from 'react-bootstrap/CardGroup';
 
-function DishesList({ dishes }) {
+function DishesList({ dishes, handleDeleteDish }) {
 
   return(
     <div>
@@ -10,6 +10,7 @@ function DishesList({ dishes }) {
           <DishesCard 
             key={value.id}
             dish={value}
+            handleDeleteDish={handleDeleteDish}
           />
           )}
       </CardGroup>

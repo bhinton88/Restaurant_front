@@ -2,7 +2,7 @@ import DishesList from "./DishesList"
 import Button from 'react-bootstrap/Button'
 import { useNavigate, useParams } from "react-router-dom"
 
-function DishesPage({ restaurants }) {
+function DishesPage({ restaurants, handleDeleteDish }) {
 
   const navigate = useNavigate()
 
@@ -20,8 +20,9 @@ function DishesPage({ restaurants }) {
 
   return(
     <section>
-      <Button variant="primary" onClick={onClick}>Add a New Dish to this Restaurant!</Button>
+      <Button id="newdish" variant="primary" onClick={onClick}>Add a New Dish to this Restaurant!</Button>
       <DishesList
+        handleDeleteDish={handleDeleteDish}
         dishes={dishes}
         restaurants={restaurants} 
       />

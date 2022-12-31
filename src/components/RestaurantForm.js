@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -7,6 +8,8 @@ import Row from 'react-bootstrap/Row';
 
 function RestaurantForm ({ states,handleNewRestaurant }) {
 
+  const navigate = useNavigate()
+
   const [formData, setFormData] = useState({
     name: "",
     city: "",
@@ -14,7 +17,7 @@ function RestaurantForm ({ states,handleNewRestaurant }) {
     food_type: "",
     phone_number: 0,
     website: "",
-    online_ordering: '',
+    online_ordering: "",
     image: ""
   })
 
@@ -24,7 +27,6 @@ function RestaurantForm ({ states,handleNewRestaurant }) {
       ...formData,
       [event.target.name]: event.target.value
     })
-    console.log(formData)
   }
 
   function onSubmit(event) {
@@ -38,12 +40,16 @@ function RestaurantForm ({ states,handleNewRestaurant }) {
       body: JSON.stringify(formData)
     })
     .then(response => response.json())
-    .then(data => handleNewRestaurant(data) )
+    .then(data => handleNewRestaurant(data))
+
+    alert("New Restaurant Added")
+
+    navigate("/restaurants")
   }
 
   return (
     <div id="restaurantFormContainer">
-      <Form>
+      <Form onSubmit={onSubmit}>
         <Row className="mb-3">
           <Form.Group as={Col} >
             <Form.Label>Restaurant Name:</Form.Label>
@@ -104,6 +110,7 @@ function RestaurantForm ({ states,handleNewRestaurant }) {
             <Form.Control 
               type="tel"
               name='phone_number'
+              placeholder="ex: 1234567898"
               maxLength='10'
               value={formData.phone_number}
               onChange={onChange}
@@ -116,9 +123,22 @@ function RestaurantForm ({ states,handleNewRestaurant }) {
               onChange={onChange}
               value={formData.online_ordering}
             >
+              <option>Choose a value</option>
               <option value='Yes'>Yes</option>
               <option value='No'>No</option>
             </Form.Select>
+          </Form.Group>
+        </Row>
+        <Row className="mb-3">
+          <Form.Group as={Col}>
+            <Form.Label>Website URL:</Form.Label>
+            <Form.Control 
+                type='text'
+                name='website'
+                placeholder='Enter Website URL'
+                value={formData.website}
+                onChange={onChange}
+              />
           </Form.Group>
         </Row>
         <Button variant="primary" type="submit">Submit New Restaurant</Button>

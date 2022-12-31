@@ -13,24 +13,63 @@ import LastFiveDishesSubmitted from "./LastFiveDishes";
 function App() {
 
   const [restaurants, setRestaurants] = useState([])
-  const [lastFiveDishes, setLastFiveDishes] = useState([])
 
   useEffect (() => {
     fetch("http://localhost:9292/restaurants")
     .then(response => response.json())
     .then(data => setRestaurants(data))
-  }, [] );
-
-  useEffect (() => {
-    fetch("http://localhost:9292/last_five_dishes_submitted")
-    .then(response => response.json())
-    .then(data => setLastFiveDishes(data))
-  }, [])
+  },[]);
 
   function handleNewRestaurant (data) {
     setRestaurants([...restaurants, data])
   }
 
+  function handleNewDish(newDish) {
+   const updatedRestaurants = restaurants.map(rest => {
+    if(rest.id === newDish.restaurant_id){
+      return { 
+        ...rest, 
+        dishes: [...rest.dishes, newDish]
+      }
+    } else {
+      return rest
+    }
+   })
+   setRestaurants(updatedRestaurants)
+  }
+
+  function handleDeleteDish (restId, dishId) {
+    const updatedRestaurants = restaurants.map(rest => {
+      if(restId === rest.id){
+        return {
+          ...rest,
+          dishes: rest.dishes.filter(value => value.id !== dishId)
+        }
+        } else {
+          return rest
+        }
+      })
+
+      setRestaurants(updatedRestaurants)
+    }
+
+  function handleDeletedRestaurant(id){
+    const updatedRestaurants = restaurants.filter(value => value.id !== id)
+
+    setRestaurants(updatedRestaurants)
+  }
+
+  function updatedRestaurants (updatedRestaurant) {
+    const updatedRestaurants = restaurants.map(value =>  {
+      if(value.id === updatedRestaurant.id){
+        return updatedRestaurant
+      } else {
+        return value 
+      }
+    })
+
+    setRestaurants(updatedRestaurants)
+  }
 
   return(
     <div>
@@ -41,7 +80,10 @@ function App() {
         <RestaurantPage 
           states={states}
           restaurants={restaurants} 
-          handleNewRestaurant={handleNewRestaurant}/>}
+          handleNewRestaurant={handleNewRestaurant}
+          handleDeletedRestaurant={handleDeletedRestaurant}
+          updatedRestaurants={updatedRestaurants}
+        />}
         />
         <Route path="/restaurants/new_restaurant" element={
           <RestaurantForm 
@@ -50,14 +92,17 @@ function App() {
           />} 
         />
         <Route path="/restaurants/:id/dishes" element={
-          <DishesPage restaurants={restaurants}/>}
+          <DishesPage 
+            restaurants={restaurants}
+            handleDeleteDish={handleDeleteDish}
+          />}
         />
         <Route path="/restaurants/:id/dishes/submit_new_dish" element={
-          <DishesForm />
+          <DishesForm handleNewDish={handleNewDish} />
         }
         />
         <Route path="/last_five_dishes_submitted" element={
-          <LastFiveDishesSubmitted dishes={lastFiveDishes} />}
+          <LastFiveDishesSubmitted />}
         />
       </Routes>
     </div>

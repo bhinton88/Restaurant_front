@@ -1,7 +1,7 @@
 import RestaurantCard from "./RestaurantCard"
 import CardGroup from 'react-bootstrap/CardGroup';
 
-function RestaurantList ({restaurants}) {
+function RestaurantList ({restaurants, handleDeletedRestaurant, updatedRestaurants}) {
 
   return (
     <div>
@@ -9,7 +9,9 @@ function RestaurantList ({restaurants}) {
         {restaurants.map(value => 
           <RestaurantCard 
             key={value.id} 
-            restaurant={value} 
+            updatedRestaurants={updatedRestaurants}
+            restaurant={value}
+            handleDeletedRestaurant={handleDeletedRestaurant} 
           />
         )}
       </CardGroup>

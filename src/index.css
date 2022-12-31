@@ -7,13 +7,13 @@
   margin-block-start: 25px;
 }
 
-#restaurantcard {
+#restaurantcard, .dishescard {
   padding-inline: 8px;
   margin-inline: 5px;
   margin-block-start: 25px;
 }
 
-#newrestaurant {
+#newrestaurant, #newdish {
   margin-block: 30px;
 }
 
