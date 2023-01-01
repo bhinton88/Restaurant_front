@@ -17,12 +17,11 @@ Technologies used for this projects:
 React, Ruby, ActiveRecord, Sinatra, HTML, CSS, JavaScript, Bootstrap, Bootstrap-React
 
 ## Setup
+Fork and clone this repo along with the back end repository [Back-End](https://github.com/bhinton88/Phase_3_project_backend)
 
 For Front end: 
 
 Run `$ npm install`, then `$ npm start` to open web app.
-
-for back end repository: [Back-End](https://github.com/bhinton88/Phase_3_project_backend)
 
 ## Status
 
