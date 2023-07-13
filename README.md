@@ -1,4 +1,4 @@
-# Phase 3 Project: Restaurant repository frontend
+# Restaurant repository
 
 ## About the App:
 
