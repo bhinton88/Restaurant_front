@@ -23,10 +23,6 @@ For Front end:
 
 Run `$ npm install`, then `$ npm start` to open web app.
 
-## Status
-
-Still editing and plan to add further features/sorting functionalities 
-
 ## Author
 
 👤 **Bobby Hinton**
